@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鍾皓軒 Howard | 工研院級品牌視覺識別與色彩系統指南 (純白亮色版)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        itri: {
+                            blue: '#005BAC',       /* 工研藍 / 核心主色 */
+                            navy: '#0B1E36',       /* 深藍架構色 / 權威標題 */
+                            cyan: '#00A3E0',       /* 前瞻青 / AI 與創新 */
+                            lightcyan: '#0284C7',  /* 高對比藍青色 */
+                            amber: '#FF6A00',      /* 活力橘 / 高轉化 CTA */
+                            gold: '#D97706',       /* 亮點補強色 */
+                            lightbg: '#FFFFFF',    /* 純白主基底 (60%) */
+                            lightcard: '#F8FAFC',  /* 模組背景色 Slate-50 */
+                            lightborder: '#E2E8F0' /* 細微邊框色 Slate-200 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'PingFang TC', 'Microsoft JhengHei', 'sans-serif'],
+                        mono: ['Fira Code', 'JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom Light Grid & Glow Effects */
+        .bg-grid-pattern-light {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 91, 172, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 91, 172, 0.04) 1px, transparent 1px);
+        }
+        .color-card-glow {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .color-card-glow:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -8px rgba(0, 91, 172, 0.12);
+        }
+        /* Glassmorphism Effect for Light Theme */
+        .glass-panel-light {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+        }
+        /* Dark mode preview box override */
+        .preview-dark-mode {
+            background-color: #080C14 !important;
+            color: #F8FAFC !important;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 font-sans min-h-screen selection:bg-cyan-500 selection:text-white bg-grid-pattern-light pb-20">
+
+    <!-- Header / Brand System Banner -->
+    <header class="border-b border-slate-200 bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#005BAC] via-[#00A3E0] to-[#FF6A00] p-[2px] shadow-md shadow-blue-500/10">
+                    <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid fa-palette text-[#005BAC] text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-slate-900 tracking-wide flex items-center gap-2">
+                        <span>工研院 (ITRI) 級 AI 品牌視覺色彩體系</span>
+                        <span class="text-xs font-mono bg-blue-50 text-[#005BAC] border border-blue-200 px-2 py-0.5 rounded-full font-semibold">v3.0 Clean White</span>
+                    </h1>
+                    <p class="text-xs text-slate-500 font-mono">Brand Identity Guidelines (White Light Edition) • 鍾皓軒 Howard Chung</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <a href="#ui-preview" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-200 text-xs font-mono transition-colors">
+                    <i class="fa-solid fa-desktop text-[#005BAC]"></i>
+                    <span>實機 UI 模擬</span>
+                </a>
+                <button onclick="scrollToTokens()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#005BAC] to-[#00A3E0] text-white font-semibold text-xs transition-transform active:scale-95 shadow-lg shadow-blue-500/20 flex items-center space-x-1.5">
+                    <i class="fa-solid fa-code"></i>
+                    <span>複製 Code Token</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 space-y-12">
+
+        <!-- 1.0 Brand Visual Strategy -->
+        <section class="glass-panel-light rounded-3xl p-6 sm:p-8 border border-slate-200 relative overflow-hidden bg-white shadow-xl shadow-slate-100">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-[#005BAC]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-[#00A3E0]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 space-y-6">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#005BAC] text-xs font-mono font-semibold">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>1.0 白色極簡品牌策略 (White Clean Strategy)</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+                            以<span class="text-[#005BAC]">「純白明亮畫布」</span>襯托<span class="text-[#00A3E0]">「工研院權威藍」</span>與<span class="text-[#FF6A00]">「高高轉化躍動橘」</span>
+                        </h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            本色彩體系專為 **AI 轉型顧問** 與 **資料科學品牌** 設計，改以純白底色為核心 Canvas。在純白大光的視覺體驗下，能讓文章閱讀更加舒適、線條結構更加俐落，並以鮮明的工研藍展現國家級可靠質感，同時搭配高彩度前瞻青與躍動橘，達到第一眼吸睛與極高信賴度。
+                        </p>
+                    </div>
+
+                    <!-- Visual Strategy Pillars -->
+                    <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                            <div class="w-10 h-10 mx-auto mb-2 rounded-xl bg-[#005BAC]/10 text-[#005BAC] flex items-center justify-center text-lg font-bold">
+                                01
+                            </div>
+                            <h3 class="text-xs font-bold text-slate-900 mb-1">純粹與清晰</h3>
+                            <p class="text-[11px] text-slate-500">Pure White Base<br>高可讀性與極簡閱讀</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                            <div class="w-10 h-10 mx-auto mb-2 rounded-xl bg-[#00A3E0]/10 text-[#00A3E0] flex items-center justify-center text-lg font-bold">
+                                02
+                            </div>
+                            <h3 class="text-xs font-bold text-slate-900 mb-1">權威與信任</h3>
+                            <p class="text-[11px] text-slate-500">ITRI Core Blue<br>深邃可靠大廠基因</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                            <div class="w-10 h-10 mx-auto mb-2 rounded-xl bg-[#FF6A00]/10 text-[#FF6A00] flex items-center justify-center text-lg font-bold">
+                                03
+                            </div>
+                            <h3 class="text-xs font-bold text-slate-900 mb-1">商業產出 ROI</h3>
+                            <p class="text-[11px] text-slate-500">Action Orange<br>強烈引導與諮詢轉化</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2.0 Core Swatches Grid -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#005BAC] text-xs font-mono font-semibold mb-2">
+                        <i class="fa-solid fa-swatchbook"></i>
+                        <span>2.0 核心色票矩陣 (Core White Color Swatches)</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">點擊任一色卡即可複製 Hex 色碼</h2>
+                </div>
+                <div class="text-xs font-mono text-slate-500 hidden sm:block">
+                    * 符合 WCAG 2.1 AA/AAA 白底高對比閱讀標準
+                </div>
+            </div>
+
+            <!-- Color Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                
+                <!-- Color 1: Primary ITRI Blue -->
+                <div class="color-card-glow bg-white rounded-2xl p-4 border border-slate-200 cursor-pointer group shadow-sm hover:border-blue-400" onclick="copyColor('#005BAC', '工研經典藍 Primary Blue')">
+                    <div class="h-32 rounded-xl bg-[#005BAC] relative overflow-hidden p-3 flex flex-col justify-between shadow-md">
+                        <span class="bg-black/20 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-white w-max">
+                            主色 (Primary 30%)
+                        </span>
+                        <div class="flex justify-between items-end text-white">
+                            <span class="font-mono text-lg font-extrabold tracking-wider">#005BAC</span>
+                            <i class="fa-regular fa-copy group-hover:scale-125 transition-transform text-sm opacity-90"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 space-y-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 flex items-center justify-between">
+                            <span>工研經典藍</span>
+                            <span class="text-[10px] font-mono text-[#005BAC] bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 font-semibold">ITRI Blue</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-snug">代表工研院級技術基石、權威、穩健與大型企業信賴感。</p>
+                        <div class="pt-2 border-t border-slate-100 flex justify-between text-[11px] font-mono text-slate-500">
+                            <span>RGB: 0, 91, 172</span>
+                            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-check text-[9px]"></i> AAA 級對比</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 2: Innovation Cyan -->
+                <div class="color-card-glow bg-white rounded-2xl p-4 border border-slate-200 cursor-pointer group shadow-sm hover:border-cyan-400" onclick="copyColor('#00A3E0', '前瞻青 Innovation Cyan')">
+                    <div class="h-32 rounded-xl bg-[#00A3E0] relative overflow-hidden p-3 flex flex-col justify-between shadow-md">
+                        <span class="bg-black/20 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-white w-max">
+                            輔助色 (Secondary)
+                        </span>
+                        <div class="flex justify-between items-end text-white">
+                            <span class="font-mono text-lg font-extrabold tracking-wider">#00A3E0</span>
+                            <i class="fa-regular fa-copy group-hover:scale-125 transition-transform text-sm opacity-90"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 space-y-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 flex items-center justify-between">
+                            <span>前瞻智慧青</span>
+                            <span class="text-[10px] font-mono text-[#00A3E0] bg-cyan-50 px-1.5 py-0.5 rounded border border-cyan-200 font-semibold">Data Cyan</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-snug">用於 LLM 神經網絡、數據流、高亮標籤與數位創新視覺。</p>
+                        <div class="pt-2 border-t border-slate-100 flex justify-between text-[11px] font-mono text-slate-500">
+                            <span>RGB: 0, 163, 224</span>
+                            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-check text-[9px]"></i> 白底清爽點綴</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 3: Energy Amber / Orange -->
+                <div class="color-card-glow bg-white rounded-2xl p-4 border border-slate-200 cursor-pointer group shadow-sm hover:border-orange-400" onclick="copyColor('#FF6A00', '躍動橘 Action Orange')">
+                    <div class="h-32 rounded-xl bg-[#FF6A00] relative overflow-hidden p-3 flex flex-col justify-between shadow-md">
+                        <span class="bg-black/20 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-white w-max">
+                            強調色 (Accent CTA 10%)
+                        </span>
+                        <div class="flex justify-between items-end text-white">
+                            <span class="font-mono text-lg font-extrabold tracking-wider">#FF6A00</span>
+                            <i class="fa-regular fa-copy group-hover:scale-125 transition-transform text-sm opacity-90"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 space-y-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 flex items-center justify-between">
+                            <span>躍動能量橘</span>
+                            <span class="text-[10px] font-mono text-[#FF6A00] bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200 font-semibold">Action Orange</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-snug">專用於「預約諮詢」、「送出需求」、「高 ROI 關鍵數字」強導流。</p>
+                        <div class="pt-2 border-t border-slate-100 flex justify-between text-[11px] font-mono text-slate-500">
+                            <span>RGB: 255, 106, 0</span>
+                            <span class="text-amber-600 font-semibold"><i class="fa-solid fa-fire text-[9px]"></i> 100% 轉化焦點</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color 4: Pure White Neutral Background -->
+                <div class="color-card-glow bg-white rounded-2xl p-4 border border-slate-200 cursor-pointer group shadow-sm hover:border-slate-400" onclick="copyColor('#FFFFFF', '純白底色 Pure White Canvas')">
+                    <div class="h-32 rounded-xl bg-white border border-slate-200 relative overflow-hidden p-3 flex flex-col justify-between shadow-inner">
+                        <span class="bg-slate-100 px-2.5 py-1 rounded-lg text-[10px] font-mono text-slate-700 w-max border border-slate-200 font-medium">
+                            純白基底 (Neutral 60%)
+                        </span>
+                        <div class="flex justify-between items-end text-slate-900">
+                            <span class="font-mono text-lg font-extrabold tracking-wider">#FFFFFF</span>
+                            <i class="fa-regular fa-copy group-hover:scale-125 transition-transform text-sm opacity-70"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 space-y-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 flex items-center justify-between">
+                            <span>純白極簡底色</span>
+                            <span class="text-[10px] font-mono text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">White Canvas</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-snug">提供最高等級的可讀性，傳遞極簡、透亮與現代企業洗練質感。</p>
+                        <div class="pt-2 border-t border-slate-100 flex justify-between text-[11px] font-mono text-slate-500">
+                            <span>RGB: 255, 255, 255</span>
+                            <span class="text-emerald-600 font-semibold"><i class="fa-solid fa-check text-[9px]"></i> 最高清晰閱讀</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3.0 Golden Ratio Visualizer -->
+        <section class="glass-panel-light rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-8 bg-white shadow-xl shadow-slate-100">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+                <div>
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#005BAC] text-xs font-mono font-semibold mb-2">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>3.0 配色黃金比例 (60-30-10 Rule - White Base)</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">網頁視覺層次配比與結構說明</h2>
+                </div>
+                <p class="text-slate-500 text-xs max-w-md font-mono">
+                    以純白畫布作為 60% 鋪底，融合 30% 工研藍建立專業架構，並精準保留 10% 躍動橘作為 CTA 轉化引導。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- SVG Donut Chart Visualizer -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+                    <svg viewBox="0 0 200 200" class="w-64 h-64 transform -rotate-90 filter drop-shadow-md">
+                        <!-- 60% Pure White & Slate-100 Base (Circumference ≈ 440) -->
+                        <circle cx="100" cy="100" r="70" fill="transparent" stroke="#E2E8F0" stroke-width="28" stroke-dasharray="264 440" class="transition-all duration-500 hover:opacity-90"></circle>
+                        <!-- 30% Primary Blue & Cyan (132 / 440) -->
+                        <circle cx="100" cy="100" r="70" fill="transparent" stroke="#005BAC" stroke-width="28" stroke-dasharray="132 440" stroke-dashoffset="-264" class="transition-all duration-500 hover:opacity-90"></circle>
+                        <!-- 10% Accent Amber Orange (44 / 440) -->
+                        <circle cx="100" cy="100" r="70" fill="transparent" stroke="#FF6A00" stroke-width="28" stroke-dasharray="44 440" stroke-dashoffset="-396" class="transition-all duration-500 hover:opacity-90"></circle>
+                    </svg>
+
+                    <!-- Center Label -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+                        <span class="text-2xl font-extrabold font-mono text-slate-900">60-30-10</span>
+                        <span class="text-[10px] text-[#005BAC] font-mono tracking-widest uppercase font-bold">White Palette</span>
+                    </div>
+                </div>
+
+                <!-- Breakdown Explanation List -->
+                <div class="lg:col-span-7 space-y-4">
+                    
+                    <!-- 60% Base Neutral -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-white border border-slate-300 flex items-center justify-center font-mono font-bold text-[#005BAC] text-sm flex-shrink-0 shadow-sm">
+                            60%
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
+                                <span>純白基底與輕盈畫布 (White Canvas & Containers)</span>
+                                <span class="text-[10px] font-mono text-slate-500">#FFFFFF / #F8FAFC</span>
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                包含全站網頁背景、文章頁面、對話框與清爽白卡片。提供乾淨、明亮的白領專業感受，確保長時間閱讀毫不疲勞。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 30% ITRI Blue & Cyan -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#005BAC] flex items-center justify-center font-mono font-bold text-white text-sm flex-shrink-0 shadow-sm">
+                            30%
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
+                                <span>主體結構與權威信任 (Structure & ITRI Blue)</span>
+                                <span class="text-[10px] font-mono text-[#005BAC]">#005BAC / #00A3E0</span>
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                涵蓋次標題、導覽列高亮、功能 Icon 圖示、卡片外框 Hover 狀態、數據圖表與主要系統按鈕。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 10% Action Amber -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#FF6A00] flex items-center justify-center font-mono font-bold text-white text-sm flex-shrink-0 shadow-md shadow-orange-500/20">
+                            10%
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
+                                <span>轉換點與高亮導引 (Conversion CTAs & Badges)</span>
+                                <span class="text-[10px] font-mono text-[#FF6A00]">#FF6A00</span>
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                精確使用於「15 分鐘免費諮詢」、「即刻預約內訓」、「關鍵 ROI 成效數據 (+300%)」等極高轉換權重的焦點。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4.0 UI Component Simulator -->
+        <section id="ui-preview" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#005BAC] text-xs font-mono font-semibold mb-2">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <span>4.0 純白 UI 元件實機模擬 (Interactive Light UI Simulator)</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">測試白色底色在實際網頁元件上的亮眼表現</h2>
+                </div>
+
+                <!-- Theme Mode Toggle Button -->
+                <button id="theme-toggle-btn" onclick="togglePreviewTheme()" class="px-4 py-2 rounded-xl bg-white border border-slate-300 hover:border-[#005BAC] text-slate-700 hover:text-slate-900 text-xs font-mono transition-colors shadow-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-moon text-indigo-600" id="theme-icon"></i>
+                    <span id="theme-text">切換至暗色模式對比 (Dark Mode)</span>
+                </button>
+            </div>
+
+            <!-- Simulated UI Canvas Box -->
+            <div id="preview-canvas" class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 transition-all duration-300 space-y-8 shadow-xl shadow-slate-100">
+                
+                <!-- UI Component 1: Simulated Hero Banner & CTA -->
+                <div class="border-b border-slate-200 pb-8">
+                    <div class="max-w-3xl space-y-4">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#005BAC] text-xs font-mono font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-[#FF6A00] animate-ping"></span>
+                            <span>工研院合作講師 • 8 年 AI 落地經驗</span>
+                        </div>
+
+                        <h3 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                            Until Marketing Data science is <span class="text-[#005BAC]">common sense</span>
+                        </h3>
+
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            結合工研院級架構思考，將 Python x LLM x GCP 轉化為企業客製化 AI 轉型引擎。
+                        </p>
+
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <!-- Amber Action CTA -->
+                            <button class="px-6 py-3 rounded-xl bg-[#FF6A00] hover:bg-[#ff7a1a] text-white font-bold text-xs shadow-lg shadow-orange-500/20 transition-all transform hover:-translate-y-0.5 flex items-center space-x-2">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <span>預約免費 15 分鐘諮詢</span>
+                            </button>
+                            
+                            <!-- ITRI Blue Secondary Button -->
+                            <button class="px-6 py-3 rounded-xl bg-[#005BAC] hover:bg-[#004b8e] text-white font-semibold text-xs transition-all shadow-md shadow-blue-500/10 flex items-center space-x-2">
+                                <i class="fa-solid fa-cubes"></i>
+                                <span>探索 AI 解決方案</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI Component 2: Cards & Badges Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    
+                    <!-- Card 1: Primary Blue Highlight -->
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 hover:border-blue-300 transition-colors">
+                        <div class="w-10 h-10 rounded-xl bg-[#005BAC]/10 text-[#005BAC] flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-slate-900">私有化 RAG 知識庫</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            企業核心數據不外洩，高準確度文檔檢索與條款合規查核。
+                        </p>
+                        <span class="inline-block text-[11px] font-mono text-[#005BAC] font-bold">
+                            效率提升 +300% <i class="fa-solid fa-arrow-right text-[9px] ml-1"></i>
+                        </span>
+                    </div>
+
+                    <!-- Card 2: Innovation Cyan Highlight -->
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 hover:border-cyan-300 transition-colors">
+                        <div class="w-10 h-10 rounded-xl bg-[#00A3E0]/10 text-[#00A3E0] flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-code-branch"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-slate-900">Vibe Coding 自動化</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            將行銷數據分析與 RPA 流程無縫串接，自動化日常重覆性工作。
+                        </p>
+                        <span class="inline-block text-[11px] font-mono text-emerald-600 font-bold">
+                            工時減少 60% <i class="fa-solid fa-arrow-right text-[9px] ml-1"></i>
+                        </span>
+                    </div>
+
+                    <!-- Card 3: Energy Amber Accent Card -->
+                    <div class="p-5 rounded-2xl bg-amber-50/50 border border-[#FF6A00]/30 space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-[#FF6A00] text-white text-[9px] font-mono px-2 py-0.5 rounded-bl-lg font-bold">
+                            HOT
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-[#FF6A00]/10 text-[#FF6A00] flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-slate-900">企業 AI 實務內訓</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            白話轉譯艱澀技術，讓非理工團隊 1 天內上手生成式 AI 工作流。
+                        </p>
+                        <span class="inline-block text-[11px] font-mono text-[#FF6A00] font-bold">
+                            滿意度 98.5% <i class="fa-solid fa-arrow-right text-[9px] ml-1"></i>
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5.0 Design Tokens Exporter -->
+        <section id="tokens-section" class="glass-panel-light rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6 bg-white shadow-xl shadow-slate-100">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+                <div>
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#005BAC] text-xs font-mono font-semibold mb-2">
+                        <i class="fa-solid fa-code"></i>
+                        <span>5.0 開發者設計代碼代幣 (Clean White Tokens Exporter)</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">一鍵複製前端純白版 CSS 與 Tailwind 設定</h2>
+                </div>
+
+                <div class="flex space-x-2">
+                    <button onclick="switchTokenTab('css')" id="btn-tab-css" class="px-3 py-1.5 rounded-lg text-xs font-mono bg-blue-50 border border-blue-300 text-[#005BAC] font-bold">
+                        CSS Variables
+                    </button>
+                    <button onclick="switchTokenTab('tailwind')" id="btn-tab-tailwind" class="px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-100 border border-slate-200 text-slate-600">
+                        Tailwind Config
+                    </button>
+                </div>
+            </div>
+
+            <!-- Code Display Box -->
+            <div class="relative bg-slate-900 rounded-2xl p-5 border border-slate-800 font-mono text-xs text-slate-200 overflow-x-auto shadow-inner">
+                <button onclick="copyCurrentTokenCode()" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 px-3 py-1.5 rounded-lg border border-slate-700 text-xs transition-colors flex items-center space-x-1.5">
+                    <i class="fa-regular fa-copy"></i>
+                    <span id="copy-code-text">複製代碼</span>
+                </button>
+
+                <pre id="token-code-block" class="leading-relaxed"><code>/* ITRI Visual Identity Design Tokens - Clean White Edition */
+:root {
+  /* Brand Core Colors */
+  --color-itri-blue: #005BAC;       /* 工研經典藍 - 主色 30% */
+  --color-itri-navy: #0B1E36;       /* 深藍架構色 */
+  --color-data-cyan: #00A3E0;       /* 前瞻智慧青 - 數據與 LLM */
+  --color-action-amber: #FF6A00;    /* 躍動能量橘 - 強調 CTA 10% */
+
+  /* Neutral Background Canvas (60% Pure White Base) */
+  --color-bg-light: #FFFFFF;        /* 全站純白底色 */
+  --color-card-light: #F8FAFC;      /* 卡片模組底色 Slate-50 */
+  --color-border-light: #E2E8F0;    /* 細微分隔線 Slate-200 */
+}</code></pre>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-slate-900 border border-cyan-500 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 transition-all duration-300 transform translate-y-20 opacity-0 z-50 pointer-events-none">
+        <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <div id="toast-title" class="text-xs font-bold text-white">複製成功！</div>
+            <div id="toast-msg" class="text-[11px] text-slate-400 font-mono">Hex 色碼已複製到剪貼簿</div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. COPY COLOR TO CLIPBOARD & SHOW TOAST
+        // ==========================================
+        function copyColor(hex, name) {
+            const tempInput = document.createElement('input');
+            tempInput.value = hex;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('色碼已複製！', `${name} (${hex})`);
+        }
+
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = msg;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // ==========================================
+        // 2. LIGHT / DARK PREVIEW TOGGLE SIMULATOR
+        // ==========================================
+        let isDarkMode = false;
+        function togglePreviewTheme() {
+            const canvas = document.getElementById('preview-canvas');
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+
+            isDarkMode = !isDarkMode;
+
+            if (isDarkMode) {
+                canvas.classList.add('preview-dark-mode');
+                icon.className = 'fa-solid fa-sun text-amber-400';
+                text.innerText = '切換至純白亮色 UI 測試 (Light Mode)';
+            } else {
+                canvas.classList.remove('preview-dark-mode');
+                icon.className = 'fa-solid fa-moon text-indigo-600';
+                text.innerText = '切換至暗色模式對比 (Dark Mode)';
+            }
+        }
+
+        // ==========================================
+        // 3. CODE TOKEN EXPORTER SWITCHER
+        // ==========================================
+        let currentTab = 'css';
+        const cssCode = `/* ITRI Visual Identity Design Tokens - Clean White Edition */
+:root {
+  /* Brand Core Colors */
+  --color-itri-blue: #005BAC;       /* 工研經典藍 - 主色 30% */
+  --color-itri-navy: #0B1E36;       /* 深藍架構色 */
+  --color-data-cyan: #00A3E0;       /* 前瞻智慧青 - 數據與 LLM */
+  --color-action-amber: #FF6A00;    /* 躍動能量橘 - 強向 CTA 10% */
+
+  /* Neutral Background Canvas (60% Pure White Base) */
+  --color-bg-light: #FFFFFF;        /* 全站純白底色 */
+  --color-card-light: #F8FAFC;      /* 卡片模組底色 Slate-50 */
+  --color-border-light: #E2E8F0;    /* 細微分隔線 Slate-200 */
+}`;
+
+        const tailwindCode = `// tailwind.config.js - ITRI Pure White Brand Palette
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        itri: {
+          blue: '#005BAC',       // 工研經典藍 (Primary 30%)
+          navy: '#0B1E36',       // 權威深藍
+          cyan: '#00A3E0',       // 前瞻智慧青 (LLM & Data)
+          amber: '#FF6A00',      // 躍動能量橘 (Action CTA 10%)
+          whitebg: '#FFFFFF',    // 純白畫布底色 (60%)
+          card: '#F8FAFC',       // Slate-50 模組底色
+        }
+      }
+    }
+  }
+}`;
+
+        function switchTokenTab(tab) {
+            currentTab = tab;
+            const codeBlock = document.getElementById('token-code-block');
+            const btnCss = document.getElementById('btn-tab-css');
+            const btnTailwind = document.getElementById('btn-tab-tailwind');
+
+            if (tab === 'css') {
+                codeBlock.innerHTML = `<code>${escapeHtml(cssCode)}</code>`;
+                btnCss.className = 'px-3 py-1.5 rounded-lg text-xs font-mono bg-blue-50 border border-blue-300 text-[#005BAC] font-bold';
+                btnTailwind.className = 'px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-100 border border-slate-200 text-slate-600';
+            } else {
+                codeBlock.innerHTML = `<code>${escapeHtml(tailwindCode)}</code>`;
+                btnTailwind.className = 'px-3 py-1.5 rounded-lg text-xs font-mono bg-blue-50 border border-blue-300 text-[#005BAC] font-bold';
+                btnCss.className = 'px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-100 border border-slate-200 text-slate-600';
+            }
+        }
+
+        function copyCurrentTokenCode() {
+            const textToCopy = currentTab === 'css' ? cssCode : tailwindCode;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('代碼已複製！', `${currentTab.toUpperCase()} 設定碼已存入剪貼簿`);
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function scrollToTokens() {
+            document.getElementById('tokens-section').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
